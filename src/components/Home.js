@@ -7,44 +7,50 @@ import Result from './Result';
 
 
 export default function Home() {
-  const [wel,setWel]=useState(true)
-  const [rule,setRule]=useState(false)
-  const [question,setQuestion]=useState(false)
-  const [result,setResult]=useState(false)
-  const [score,setScore]=useState(0)
-  const nextPage=()=>{
-    if(wel===true){
-      setWel(false)
-      setRule(true)
-    }else if(rule===true){
-      setRule(false)
-      setQuestion(true)
-    }else if(question===true){
-      setQuestion(false)
-      setResult(true)
-    }
 
+  const [score,setScore]=useState(0)
+
+  const [page, setPage] = useState('welcome')
+
+  const nextPage=()=>{
+
+    console.log(page)
+    switch (page) {
+      case 'welcome':
+        setPage('rule')
+        break;
+
+      case 'rule':
+        setPage('question')
+        break;
+
+      case 'question':
+        setPage('result')
+        break;
+    
+      default:
+        break;
+    }
   }
+
   const prevPage=()=>{
-    if(rule===true){
-      setRule(false)
-      setWel(true)
+    if(page==='rule'){
+      setPage('welcome')
     }
   }
   const quit=()=>{
-    setResult(false)
-    setWel(true)
+    setPage('welcome')
   }
   const replay=()=>{
-    setResult(false)
-    setQuestion(true)
+    setPage('question')
+    setScore(0)
   }
   return (
     <>
-    {wel?<Welcome next={nextPage} />:''}
-    {rule?<RuleBox next={nextPage} prev={prevPage} />:''}
-    {question?<Qbox score={score} setScore={setScore} next={nextPage} />:''}
-    {result?<Result quit={quit} replay={replay}  score={score} />:''} 
+    {(page === 'welcome')?<Welcome next={nextPage} />:''}
+    {(page ==='rule')?<RuleBox next={nextPage} prev={prevPage} />:''}
+    {(page ==='question')?<Qbox score={score} setScore={setScore} next={nextPage} />:''}
+    {(page ==='result')?<Result quit={quit} replay={replay}  score={score} />:''} 
     </>
   )
 }

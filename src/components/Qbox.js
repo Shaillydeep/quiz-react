@@ -4,6 +4,7 @@ import { useState } from 'react'
 import styles from './qbox.module.css'
 import question from './question.json'
 export default function Qbox(props) {
+
   const [que,setQue]=useState(0)
   const [time,setTime]=useState(15)
   const [width,setWidth]=useState(0.00)
@@ -83,7 +84,7 @@ useEffect(()=>{
         <div onClick={(e)=>{check_answer(e)}} className={styles.q_question}>{question[que].options[3]}</div>
       </div>
       <div className='q-box-footer'>
-          <button className='quiz-button' id='continue' onClick={(que===question.length-1)?props.next:()=>{setTimeout(nextQuestion,1000)}} type='button'>Next</button>
+          <button className='quiz-button' id='continue' onClick={(que===question.length-1)?props.next:()=>{setTimeout(nextQuestion,100)}} type='button'>Next</button>
       </div>
     </div>
   )
