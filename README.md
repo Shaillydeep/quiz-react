@@ -1,11 +1,5 @@
-## React JS Quiz App
+## Simple ReactJS Quiz App
 
-## Project Requirements
-
-```bash
-Install Node On Your Device
-https://nodejs.org/
-```
 ## To Run this Project via NPM follow below
 
 ```bash
@@ -16,5 +10,5 @@ npm start
 ## Set Questoin For Quiz
 
 ```bash
-Set as much as question in question.json file
+Set questions using question.json file
 ```
